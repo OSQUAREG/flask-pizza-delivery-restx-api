@@ -1,0 +1,8 @@
+# used when running the server with: python runserver.py
+
+from api import create_app
+
+app = create_app()
+
+if __name__ == "__main__":
+    app.run()

@@ -54,7 +54,7 @@ def create_app(config=config_dict["dev"]):
 
     api = Api(
         app=app,
-        title="Pizza Delivery RESTX API",
+        title="Pizza Delivery Service RESTX API",
         description="A simple Pizza delivery API service",
         version="1.0",
         authorizations=authorizations,

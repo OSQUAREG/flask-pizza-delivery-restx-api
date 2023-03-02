@@ -1,8 +1,8 @@
 # pip install python-decouple to help retrieve and store the variables in .env file.
 
 import os
+import re
 from datetime import timedelta
-
 from decouple import config
 
 # base_dir = os.path.abspath(os.path.dirname(__file__))
@@ -25,8 +25,8 @@ class Config:
 
 
 class DevelopmentConfig(Config):
-    DEBUG = config("FLASK_DEBUG", cast=bool)
     SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(base_dir, "db.sqlite3")
+    DEBUG = config("FLASK_DEBUG", cast=bool)
 
 
 class TestingConfig(Config):
@@ -35,10 +35,10 @@ class TestingConfig(Config):
 
 
 class ProductionConfig(Config):
-    DEBUG = config("FLASK_DEBUG", False, cast=bool)
     SQLALCHEMY_DATABASE_URI = uri
+    DEBUG = config("FLASK_DEBUG", False, cast=bool)
     SQLALCHEMY_ECHO = False
-
+    
 
 config_dict = dict(
     dev=DevelopmentConfig,

@@ -26,7 +26,7 @@ class Config:
 
 class DevelopmentConfig(Config):
     SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(base_dir, "db.sqlite3")
-    DEBUG = config("FLASK_DEBUG", cast=bool)
+    DEBUG = True  
 
 
 class TestingConfig(Config):
@@ -36,7 +36,7 @@ class TestingConfig(Config):
 
 class ProductionConfig(Config):
     SQLALCHEMY_DATABASE_URI = uri
-    DEBUG = config("FLASK_DEBUG", False, cast=bool)
+    DEBUG = config("DEBUG", False, cast=bool)
     SQLALCHEMY_ECHO = False
     
 

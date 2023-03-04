@@ -6,7 +6,6 @@ from ..orders import orders_namespace  # Namespace instantiated in auth/__init__
 create_order_model = orders_namespace.model(
     name="Create Order",
     model={
-        "message": fields.String(description="Execution Message"),
         "size": fields.String(
             required=True,
             description="Size of pizza to order",

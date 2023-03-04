@@ -9,12 +9,6 @@ from decouple import config
 base_dir = os.path.dirname(os.path.realpath(__file__))
 
 
-uri = config("DATABASE_URL")  # or other relevant config var
-if uri.startswith("postgres://"):
-    uri = uri.replace("postgres://", "postgresql://", 1)
-# rest of connection code using the connection string `uri`
-
-
 class Config:
     SECRET_KEY = config("SECRET_KEY", "secret")
 
@@ -37,9 +31,15 @@ class TestingConfig(Config):
 
 
 class ProductionConfig(Config):
+    uri = config("DATABASE_URL")  # or other relevant config var
+    if uri.startswith("postgres://"):
+        uri = uri.replace("postgres://", "postgresql://", 1)
+    # rest of connection code using the connection string `uri`
+
     SQLALCHEMY_DATABASE_URI = uri
     DEBUG = config("DEBUG", False, cast=bool)
     SQLALCHEMY_ECHO = False
+    
     
 
 config_dict = dict(

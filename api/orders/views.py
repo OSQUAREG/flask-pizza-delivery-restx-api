@@ -208,6 +208,7 @@ class UpdateOrderStatus(Resource):
         description="Update an order status by giving an order Id",
         params={"order_id": "An Id for an Order"},
         responses={"body": "Order details with Updated Status"},
+        enum=["PENDING", "IN_TRANSIT", "DELIVERED"],
     )
     @jwt_required()
     def patch(self, order_id):

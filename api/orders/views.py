@@ -4,7 +4,7 @@ from http import HTTPStatus
 from ..models.users import User
 from ..models.orders import Order
 from flask_jwt_extended import jwt_required, get_jwt_identity, get_current_user
-from ..orders.schemas import create_order_model, order_details_model, update_order_model
+from ..orders.schemas import create_order_model, order_details_model, update_order_model, update_order_status_model
 from ..orders import orders_namespace
 from ..utils import db
 
@@ -202,7 +202,7 @@ class GetAllOrdersByUser(Resource):
 # Patch/Update Order Route
 @orders_namespace.route("/<int:order_id>/status")
 class UpdateOrderStatus(Resource):
-    @orders_namespace.expect(update_order_model)
+    @orders_namespace.expect(update_order_status_model)
     @orders_namespace.marshal_with(order_details_model)
     @orders_namespace.doc(
         description="Update an order status by giving an order Id",

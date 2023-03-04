@@ -24,23 +24,6 @@ def create_app(config=config_dict["dev"]):
 
     jwt = JWTManager(app)
 
-    # @jwt.additional_claims_loader
-    # @jwt_required
-    # def add_additional_claims(identity):
-    #     identity = get_jwt_identity()
-    #     if identity == 1:
-    #         return {"is_admin": True}
-    #     {"is_admin": False}
-
-    # @jwt.user_identity_loader
-    # def user_identity_lookup(user):
-    #     return user.id
-
-    # @jwt.user_lookup_loader
-    # def user_lookup_callback(_jwt_header, jwt_data):
-    #     identity = jwt_data["sub"]
-    #     return User.query.filter_by(id=identity).one_or_none()
-
     migrate = Migrate(app, db)
 
     authorizations = {

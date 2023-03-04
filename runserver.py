@@ -1,5 +1,3 @@
-# used when running the server with: python runserver.py
-
 from api import create_app
 from api.config.config import config_dict
 

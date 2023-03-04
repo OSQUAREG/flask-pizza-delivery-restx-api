@@ -8,9 +8,11 @@ from decouple import config
 # base_dir = os.path.abspath(os.path.dirname(__file__))
 base_dir = os.path.dirname(os.path.realpath(__file__))
 
-uri = os.getenv("DATABASE_URL")
+
+uri = config("DATABASE_URL")  # or other relevant config var
 if uri.startswith("postgres://"):
     uri = uri.replace("postgres://", "postgresql://", 1)
+# rest of connection code using the connection string `uri`
 
 
 class Config:
